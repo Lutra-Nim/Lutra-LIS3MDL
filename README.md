@@ -3,6 +3,12 @@
 
 A driver for ST's LIS3MDL, written against [Lutra](https://github.com/Lutra-Nim/Lutra)'s `I2cBus` interface, so it runs on any board Lutra supports. Adafruit's [LSM6DS33 + LIS3MDL breakout](https://www.adafruit.com/product/4485) carries one; [lutra_lsm6ds33](https://github.com/Lutra-Nim/Lutra-LSM6DS33) drives the other half of that board.
 
+```
+nimble install lutra_lis3mdl
+```
+
+installs it, and Lutra with it.
+
 ```nim
 import lutra, lutra_lis3mdl
 
@@ -30,7 +36,7 @@ The sensor runs in its high-performance mode. Its thermometer and its interrupt 
 
 On Adafruit's breakout, wire VIN to 3V3, GND to ground, and SDA and SCL to any two free pins. Its other pins can stay unconnected.
 
-The example in [examples/](examples) is run from that folder, with Lutra checked out beside this repository in a folder named `lutra`:
+The example in [examples/](examples) is run from that folder, once `nimble install -d` in this repository has installed Lutra:
 
 ```
 nim flash read.nim
@@ -38,3 +44,5 @@ nim monitor
 ```
 
 `nim r tlis3mdl.nim` in [tests/](tests) checks the driver on the host, against a stand-in for the bus.
+
+To work on this driver and Lutra together, with Lutra checked out beside this repository, run `nimble develop -a:../lutra` and then `nimble setup`, once. The examples and tests then use that checkout.
